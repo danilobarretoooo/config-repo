@@ -30,5 +30,5 @@ management:
         include: "*"
 
 jwt:
-  secret: your-very-secure-secret-key-here
+  secret: ZmxhbWVuZ29tZWxob3J0aW1lZG9tdW5kbw==
   expiration: 86400000
