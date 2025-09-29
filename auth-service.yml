@@ -1,7 +1,8 @@
-server:
-  port: 8082
-
 spring:
+  application:
+    name: auth-service
+  config:
+    import: optional:configserver:http://localhost:8888
   datasource:
     url: jdbc:postgresql://localhost:5432/authdb
     username: authuser
@@ -15,8 +16,21 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
   flyway:
-    enabled: true
-    locations: classpath:db/migration
+    enabled: false
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: danilobarreto15@gmail.com
+    password: fipl hlim vzzm mwej
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+server:
+  port: 8082
 
 eureka:
   client:
@@ -30,5 +44,5 @@ management:
         include: "*"
 
 jwt:
-  secret: ZmxhbWVuZ29tZWxob3J0aW1lZG9tdW5kbw==
+  secret: your-very-secure-secret-key-here
   expiration: 86400000
