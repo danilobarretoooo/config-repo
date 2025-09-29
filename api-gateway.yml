@@ -4,23 +4,25 @@ server:
 spring:
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
       routes:
-        - id: user-service
-          uri: lb://user-service
-          predicates:
-            - Path=/users/**
-        - id: core-service
-          uri: lb://core-service
-          predicates:
-            - Path=/products/**
         - id: auth-service
           uri: lb://auth-service
           predicates:
             - Path=/auth/**
+          filters:
+            - RemoveRequestHeader=Authorization  # Evita loop de autenticação no auth-service
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/users/**
+          filters:
+            - TokenRelay=  # Passa o token JWT
+        - id: core-service
+          uri: lb://core-service
+          predicates:
+            - Path=/products/**
+          filters:
+            - TokenRelay=
 
 eureka:
   client:
