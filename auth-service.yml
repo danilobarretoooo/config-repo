@@ -1,7 +1,6 @@
 spring:
   application:
     name: auth-service
-    spring:
   config:
     import: optional:configserver:
   datasource:
@@ -39,5 +38,5 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 
 jwt:
-  secret: your-very-secure-secret-key-here
+  secret: ZmxhbWVuZ28tbWVsaG9yLXRpbWUtZG8tbXVuZG8tb3MtYW50aXMtY2hvcmFt
   expiration: 86400000
